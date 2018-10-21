@@ -1,0 +1,40 @@
+{
+  "name": "ImageGallery",
+  "version": "1.0.0",
+  "description": "Image gallery in rows of two or three images",
+  "main": "index.js",
+  "scripts": {
+    "start": "node_modules/.bin/webpack-dev-server --progress"
+  },
+  "author": "Marcos Lamas Dubra",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "babel-preset-env": "^1.7.0",
+    "babylon": "^6.18.0",
+    "css-loader": "^1.0.0",
+    "redux-devtools-extension": "^2.13.5",
+    "redux-promise-middleware": "^5.1.1",
+    "redux-thunk": "^2.3.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
+  },
+  "dependencies": {
+    "babel-plugin-webpack-alias": "^2.1.2",
+    "bootstrap": "^4.1.3",
+    "fredux": "^2.0.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.4",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.7",
+    "reactstrap": "^6.5.0",
+    "redux": "^4.0.1"
+  }
+}
