@@ -1,12 +1,16 @@
+var path = require("path");
+
 module.exports = {
   mode: 'development',
   entry: [
     './index.js'
   ],
+  
   output: {
     path: __dirname,
     filename: 'bundle.js'
   },
+  
   module: {
     rules: [
         {
@@ -22,5 +26,13 @@ module.exports = {
             use:['style-loader','css-loader'] 
         }
     ]
+  },
+  
+  resolve: {
+    extensions: [".css", ".js", ".jsx"],
+    alias: {
+      "app": path.resolve(__dirname, "src/"),
+      "bootstrap": path.resolve(__dirname, "node_modules/bootstrap/dist")
+    }
   }
 };
