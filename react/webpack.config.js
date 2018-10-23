@@ -30,7 +30,7 @@ module.exports = {
   },
   
   plugins: [
-        new webpack.HotModulesReplacementPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin()
   ],
   

@@ -4,7 +4,7 @@
   "description": "Image gallery in rows of two or three images",
   "main": "index.js",
   "scripts": {
-    "server": "node webpack.server.js"
+    "server": "node webpack.server.js",
     "start": "npm run server"
   },
   "author": "Marcos Lamas Dubra",
