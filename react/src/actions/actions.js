@@ -6,11 +6,11 @@ export function fetchImages() {
         dispatch ({
             type: FETCH_IMAGES,
         });
-        return fetch('/api/images')
-            .then( res => console.log(res))
-            .then( json => {
-                dispatch (loadImagesSuccess( json.sources ));
-                return json.sources;
+        //return fetch('/api/images')
+        return fetch('http://localhost:3000/images')
+            .then( resp => resp.json())
+            .then( data => {
+                dispatch (loadImagesSuccess( data ));
             });
             //.catch(error => dispatch( fetchImagesFailure(error)) );
     };
@@ -20,7 +20,7 @@ export function loadImagesSuccess (sources) {
     return {
         type: FETCH_IMAGES_SUCCESS,
         payload: {
-            sources: sources,   
+            sources: sources,
         }
     }
 }

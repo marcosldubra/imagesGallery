@@ -1,6 +1,6 @@
 {
     "images": [
-        "./images/prueba.jpg",
-        "./images/prueba.jpg"
+        "/static/images/prueba.jpg",
+        "static/images/prueba2.jpg"
     ]
 }
