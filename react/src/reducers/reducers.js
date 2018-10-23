@@ -1,14 +1,17 @@
 import { combineReducers } from 'redux';
-import { LOAD_GALLERY } from 'app/actions/actions'
+import { FETCH_IMAGES, LOAD_IMAGES } from 'app/actions/actions'
 
 const initialState = {
-    sources: [ '/images/prueba.jpg', '/images/prueba.jpg' ],
+    sources: [],
+    loading: true,
 }
 
 function imagesReducer (state = initialState.sources, action) {
-  switch (action.type) {
+    switch (action.type) {
+        case FETCH_GALLERY:
+            return state
         case LOAD_GALLERY:
-            return [ action.source, ...state  ]
+    return { action.sources, loading: action.loading, ...state  }
         default:
             return state
     }

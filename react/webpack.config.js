@@ -4,12 +4,15 @@ var webpack = require ('webpack');
 module.exports = {
   mode: 'development',
   entry: [
-    './index.js'
+    'webpack-dev-server/client?http://0.0.0.0:3030',
+    'webpack/hot/only-dev-server',
+    './src/index.jsx'
   ],
   
   output: {
-    path: __dirname,
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, "dist/"),
+    filename: "bundle.js",
+    publicPath: "/static/"
   },
   
   module: {
