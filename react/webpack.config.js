@@ -1,4 +1,5 @@
-var path = require("path");
+var path = require('path');
+var webpack = require ('webpack');
 
 module.exports = {
   mode: 'development',
@@ -27,6 +28,11 @@ module.exports = {
         }
     ]
   },
+  
+  plugins: [
+        new webpack.HotModulesReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin()
+  ],
   
   resolve: {
     extensions: [".css", ".js", ".jsx"],
