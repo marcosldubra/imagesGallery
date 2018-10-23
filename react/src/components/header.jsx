@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Button } from 'reactstrap'
 
-import { loadGallery } from '../actions/actions'
+import { fetchImages } from '../actions/actions'
 
 const Header = ({ onLoadGallery }) => {    
     return (
@@ -25,6 +25,6 @@ const Header = ({ onLoadGallery }) => {
 export default connect(
     null,
     dispatch => ({
-        onLoadGallery: () => { dispatch(loadGallery('/images/prueba2.jpg')) }
+        onLoadGallery: () => { dispatch(fetchImages()) }
     })
 )(Header)
