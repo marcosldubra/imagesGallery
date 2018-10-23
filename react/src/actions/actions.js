@@ -6,8 +6,8 @@ export function fetchImages() {
         dispatch ({
             type: FETCH_IMAGES,
         });
-        return fetch('/images')
-            .then( res => res.json())
+        return fetch('/api/images')
+            .then( res => console.log(res))
             .then( json => {
                 dispatch (loadImagesSuccess( json.sources ));
                 return json.sources;

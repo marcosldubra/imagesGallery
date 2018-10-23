@@ -10,7 +10,15 @@ new WebpackDevServer(webpack(config), {
     stats: {
         chunkModules: false,
         colors: true,
+    },
+    
+    proxy: {
+        '/api**': { 
+            target: 'http://localhost:3000',
+            secure: false,
+        }
     }
+    
 }).listen(3030, '0.0.0.0', function(err) {
     if (err) {
         console.error(err)

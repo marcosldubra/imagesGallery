@@ -1,4 +1,5 @@
-import { get } from 'fredux';
+import images from '../static/images.json';
 
-export const loadImages = () =>
-  get('api/images');
+export default function getImages (req, res, next) {
+    req.send(images);
+}
