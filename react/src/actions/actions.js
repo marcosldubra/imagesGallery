@@ -1,13 +1,12 @@
-export const FETCH_IMAGES = 'FETCH_IMAGES'
-export const FETCH_IMAGES_SUCCESS = 'FETCH_IMAGES_SUCCESS'
+export const FETCH_IMAGES = 'FETCH_IMAGES';
+export const FETCH_IMAGES_SUCCESS = 'FETCH_IMAGES_SUCCESS';
 
 export function fetchImages() {
     return dispatch => {
         dispatch ({
             type: FETCH_IMAGES,
         });
-        //return fetch('/api/images')
-        return fetch('http://localhost:3000/images')
+        return fetch('/api/images')
             .then( resp => resp.json())
             .then( data => {
                 dispatch (loadImagesSuccess( data ));

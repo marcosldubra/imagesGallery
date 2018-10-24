@@ -13,7 +13,7 @@ new WebpackDevServer(webpack(config), {
     },
 
     proxy: {
-        '/api**': { 
+        '/api/**': { 
             target: 'http://localhost:3000/images',
             secure: false,
         }
