@@ -1,3 +1,5 @@
+import { getImagesFromApi } from '../api.js';
+
 export const FETCH_IMAGES = 'FETCH_IMAGES';
 export const FETCH_IMAGES_SUCCESS = 'FETCH_IMAGES_SUCCESS';
 
@@ -6,11 +8,14 @@ export function fetchImages() {
         dispatch ({
             type: FETCH_IMAGES,
         });
-        return fetch('/api/images')
-            .then( resp => resp.json())
-            .then( data => {
-                dispatch (loadImagesSuccess( data ));
-            });
+        return  getImagesFromApi()
+                .then (sources => {
+                    dispatch (loadImagesSuccess( sources ));
+                });
+            // .then( resp => resp.json())
+            // .then( data => {
+                // dispatch (loadImagesSuccess( data ));
+            // });
             //.catch(error => dispatch( fetchImagesFailure(error)) );
     };
 }

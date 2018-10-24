@@ -12,24 +12,26 @@ let Gallery = ({ sources }) => {
         let currentSources = sources.slice();
 
         while (currentSources.length > 0) {
-              let imagesPerRow = 0;
+                const maxImagesPerRow = 3;
+                const minImagesPerRow = 2;
+                let imagesPerRow = 0;
 
-              if (currentSources.length == 2) {
-                imagesPerRow = 2;
-              }
-              else if (currentSources.length == 3) {
-                imagesPerRow = 3;
-              }
-              else {
-                imagesPerRow = Math.floor(Math.random() * ( 4-2 )) + 2;
-              }
+                if (currentSources.length == minImagesPerRow) {
+                    imagesPerRow = minImagesPerRow;
+                }
+                else if (currentSources.length == maxImagesPerRow) {
+                    imagesPerRow = maxImagesPerRow;
+                }
+                else {
+                    imagesPerRow = Math.floor(Math.random() * ( (maxImagesPerRow + 1) - minImagesPerRow )) + minImagesPerRow;
+                }
 
-              let rowSources = currentSources.slice(0, imagesPerRow);
-              currentSources.splice(0, imagesPerRow);
-              createdRows++;
-              columnsWidth = imagesPerRow == 2 ? 6 : 4;
+                let rowSources = currentSources.slice(0, imagesPerRow);
+                currentSources.splice(0, imagesPerRow);
+                createdRows++;
+                columnsWidth = imagesPerRow == minImagesPerRow ? 6 : 4;
 
-              rows.push(<ImagesRow key={ createdRows } sources={ rowSources } columnsWidth={ columnsWidth } />);
+                rows.push(<ImagesRow key={ createdRows } sources={ rowSources } columnsWidth={ columnsWidth } />);
         }
 
         return rows;
