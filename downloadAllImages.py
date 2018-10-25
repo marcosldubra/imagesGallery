@@ -2,44 +2,32 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
+#Lanzamos una request para descargar el dom de la página:
 site = 'https://www.zara.com/es/es/hombre-chaquetas-bombers-l645.html?v1=1079280'
-
-
-#urlImagen = https://static.zara.net/photos///2018/I/0/2/p/1564/329/802/2/w/560/1564329802_9_1_1.jpg?ts=1540380660644
-
-imagesDirectoryUrl = 'https://static.zara.net/photos//'
-imagePath = '/2018/I/0/2/p/4803/309/250/2/'
-imageName = '4803309250_2_1'
-
-#Buscar no dom por imagenes para atopar as rutas de cada unha
-
-#https://static.zara.net/photos///2018/I/0/2/p/4803/309/250/2/4803309250_2_1
-#https://static.zara.net/photos///2018/I/0/2/p/4803/309/250/2/w/400/4803309250_2_1_1.jpg?ts=1539863335654
 response = requests.get(site)
 
+#Procesamos la respuesta y la convertimos en un string.
 soup = BeautifulSoup(response.text, 'html.parser')
+siteDom = str(soup.encode('utf-8'))
 
-with open("output1.html", "w", encoding="utf-8") as file:
-    file.write(str(soup))
+#Buscamos el número de productos que aparecen en la página para descargar sus imágenes mediante una expresión regular:
+imagesCounter = len(list(re.finditer("{\"id\":[0-9]+,\"type\":\"Product\",", siteDom)))
+print (imagesCounter)
 
-# f = open ('prueba.txt', 'w')
-# #print (str(soup))
-# f.write (str(soup.encode('utf-8')))
-# f.close()
+imagesIterator  = list(re.finditer("\"image\":{.*\"},{1}", siteDom))
 
-img_tags = soup.find_all('img')
+#analisis:
+regExp = "{\"id\":[0-9]+," + "\"type\":\"Product\"," + "\"kind\":\"[a-zA-Z]*\"," + "\"sequence\":\"[0-9]*\"," + "\"image\":"
 
-urls = [img['src'] for img in img_tags]
+# {"id":7269057,"type":"Product","kind":"Wear","sequence":3,"image":{"name":"5479350800_2_1","path":"/2018/I/0/2/p/5479/350/800/2/","timestamp":"1539972048019"},"xmedia":
 
 
-for url in urls:
-    print (url)
-    #filename = re.search(r'/([\w_-]+[.](jpg|gif|png))$', url)
-    #with open(filename.group(1), 'wb') as f:
-        #if 'http' not in url:
-            # sometimes an image source can be relative 
-            # if it is provide the base url which also happens 
-            # to be the site variable atm. 
-            #url = '{}{}'.format(site, url)
-            #response = requests.get(url)
-            #f.write(response.content)
+productsIterator = re.finditer(regExp, siteDom)
+for match in productsIterator:
+    print (match.group(0)[0:])
+    #print(match.start(), match.group(0))
+  
+#analisis.  
+    
+while imagesCounter > 0:
+    imagesCounter -=1
