@@ -10,7 +10,7 @@ import os
 import PIL
 from PIL import Image
 
-#directorio de imágenes:
+#directorio de imagenes:
 imagesPath = 'https://static.zara.net/photos//'
 imagesLocalPath = './front/static/'
 
@@ -29,22 +29,24 @@ regExp = productsRegExp + imagesRegExp
 
 productsIterator = re.finditer(regExp, siteDom)
 
+#Aqui se almacenaran las rutas locales de las imagenes descargadas:
+localImagesSources = []
+
 #Recorremos los datos de cada producto para encontrar la ruta de la imagen correspondiente:
 for match in productsIterator:
     #Buscamos los indices donde comienza cada dato:
     nameIndex = match.group(0).find("name\":")
     pathIndex = match.group(0).find("path\":")
     timestampIndex = match.group(0).find("timestamp\":")
-    
+
     #Recortamos los datos que nos interesan:
     imageName = match.group(0)[nameIndex+7:pathIndex-3]
     imagePath = match.group(0)[pathIndex+7:timestampIndex-3]
     imageTimestamp = match.group(0)[timestampIndex+12:-2]
-    
+
     #Componemos la url de la imagen:
     imageUrl = imagesPath + imagePath + 'w/400/' + imageName + '_1' + '.jpg?ts=' + imageTimestamp
-    
-    
+
     #Descargamos la imagen:
     req = urllib.request.Request(
         imageUrl,
@@ -55,14 +57,14 @@ for match in productsIterator:
 
     fileHandle = urllib.request.urlopen(req)
 
-    #Abrimos el archivo donde se guardará la imagen. Modo escritura y fichero binario (wb)
+    #Abrimos el archivo donde se guardara la imagen. Modo escritura y fichero binario (wb)
     image = open (imagesLocalPath + imageName + '.jpg', 'wb')
 
     #Copiamos la imagen descargada en un fichero:
     shutil.copyfileobj (fileHandle, image)
 
     image.close()
-    
+
     #Redimensionamos la imagen:
     newPercentageSize = 0.75
     img = Image.open(imagesLocalPath + imageName + '.jpg')
@@ -70,31 +72,14 @@ for match in productsIterator:
     newHeigth = int((float(img.size[1]) * newPercentageSize))
     img = img.resize((newWidth, newHeigth), PIL.Image.ANTIALIAS)
     img.save(imagesLocalPath + imageName + '.jpg')
-    
-    #Editamos el fichero de recursos:
-    sourcesFile = imagesLocalPath + 'images.json'
 
-    #Guardamos la ruta local de la imagen descargada:
-    jsonSources = {}
-    jsonSources['images'] = ["/static/images/1.jpg",
-            "/static/images/2.jpg",
-            "/static/images/3.jpg",
-            "/static/images/4.jpg",
-            "/static/images/5.jpg",
-            "/static/images/6.jpg",
-            "/static/images/7.jpg",
-            "/static/images/8.jpg",
-            "/static/images/9.jpg",
-            "/static/images/10.jpg",
-            "/static/images/11.jpg",
-            "/static/images/13.jpg"]
-            
-    with open(os.path.join(imagesLocalPath, sourcesFile), 'w') as file:
-        sources = json.loads(file)
-        sources['images'].add('./static' + imageName + '.jpg')
-        print(sources)
-        
-        
-        #json.dump(sources, file)
-    
-    
+    localImagesSources.append('./static/' + imageName + '.jpg')
+
+    print('Descargada: ' + imageName)
+
+#Guardamos las rutas locales en un archivo json:
+jsonSources = {}
+jsonSources['images'] = localImagesSources
+
+with open(imagesLocalPath + 'images.json', 'w') as file:
+    json.dump(jsonSources, file)
