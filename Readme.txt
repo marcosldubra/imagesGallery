@@ -12,7 +12,7 @@ Para probarlo:
       Ejecutar pip3 install requests
       Ejecutar pip3 install Pillow
       Ejecutar pip3 install simplejson
-      Ejecutar pip3 install beautifulsoup4
+      Ejecutar pip install beautifulsoup4
 
     2.3) Instalar node.js.
 
