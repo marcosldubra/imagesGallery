@@ -11,7 +11,7 @@ Para probarlo:
     2.2)En un terminal de comandos (entorno UNIX):
       Ejecutar pip3 install requests
       Ejecutar pip3 install Pillow
-      Ejecutar pip3 install json
+      Ejecutar pip3 install simplejson
       Ejecutar pip3 install beautifulsoup4
 
     2.3) Instalar node.js.
