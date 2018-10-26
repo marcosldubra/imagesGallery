@@ -31,5 +31,5 @@ Para probarlo:
     2.7) En otro terminal y también desde el directorio ./front ejecutar el comando $npm start.
 
     2.8) Abrir la url http://localhost:3030.
-        Al pulsar el botón 'Cargar galería' se muestran las imágenes descargadas en el punto 2.5).
+        Al pulsar el botón 'Mostrar galería' se muestran las imágenes descargadas en el punto 2.5).
         Si ejecutamos de nuevo el script del punto 2.5) con otra url y pulsamos de nuevo el botón, se muestran las imágenes de la nueva sección.
