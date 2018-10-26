@@ -6,7 +6,6 @@
   "scripts": {
     "server": "node webpack.server.js",
     "start": "npm run server",
-    "express": "node server.js",
     "json-server": "json-server --watch static/images.json"
   },
   "author": "Marcos Lamas Dubra",

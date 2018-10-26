@@ -12,11 +12,6 @@ export function fetchImages() {
                 .then (sources => {
                     dispatch (loadImagesSuccess( sources ));
                 });
-            // .then( resp => resp.json())
-            // .then( data => {
-                // dispatch (loadImagesSuccess( data ));
-            // });
-            //.catch(error => dispatch( fetchImagesFailure(error)) );
     };
 }
 
@@ -28,8 +23,3 @@ export function loadImagesSuccess (sources) {
         }
     }
 }
-
-// export const fetchImagesError = error => ({
-    // type: FETCH_IMAGES_FAILURE,
-    // payload: { error }
-// });

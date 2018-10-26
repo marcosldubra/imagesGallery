@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import ImagesRow from './imagesRow.jsx'
 
-
 let Gallery = ({ sources }) => {
     const createRows =  () => {
         let rows = [];
@@ -35,7 +34,7 @@ let Gallery = ({ sources }) => {
         }
 
         return rows;
-    } 
+    }
 
     return (
         <div className='rows'>{ createRows() }</div>

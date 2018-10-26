@@ -8,13 +8,13 @@ module.exports = {
     'webpack/hot/only-dev-server',
     './src/index.jsx'
   ],
-  
+
   output: {
     path: path.resolve(__dirname, "dist/"),
     filename: "bundle.js",
     publicPath: "/static/"
   },
-  
+
   module: {
     rules: [
         {
@@ -31,12 +31,12 @@ module.exports = {
         }
     ]
   },
-  
+
   plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin()
   ],
-  
+
   resolve: {
     extensions: [".css", ".js", ".jsx"],
     alias: {
