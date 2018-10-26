@@ -1,3 +1,4 @@
+import sys
 import re
 import requests
 from bs4 import BeautifulSoup
@@ -14,8 +15,13 @@ from PIL import Image
 imagesPath = 'https://static.zara.net/photos//'
 imagesLocalPath = './front/static/'
 
+#Si introducimos una url como argumento la cogemos, si no cogemos una por defecto:
+if len(sys.argv) > 1:
+    site = sys.argv[1]
+else:
+    site = 'https://www.zara.com/es/es/hombre-chaquetas-bombers-l645.html?v1=1079280'
+
 #Lanzamos una request para descargar el dom de la pagina:
-site = 'https://www.zara.com/es/es/hombre-chaquetas-bombers-l645.html?v1=1079280'
 response = requests.get(site)
 
 #Procesamos la respuesta y la convertimos en un string.
