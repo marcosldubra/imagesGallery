@@ -64,11 +64,11 @@ for match in productsIterator:
     image.close()
     
     #Redimensionamos la imagen:
-    basewidth = 300
+    newPercentageSize = 0.75
     img = Image.open(imagesLocalPath + imageName + '.jpg')
-    wpercent = (basewidth / float(img.size[0]))
-    hsize = int((float(img.size[1]) * float(wpercent)))
-    img = img.resize((basewidth, hsize), PIL.Image.ANTIALIAS)
+    newWidth = int((float(img.size[0]) * newPercentageSize))
+    newHeigth = int((float(img.size[1]) * newPercentageSize))
+    img = img.resize((newWidth, newHeigth), PIL.Image.ANTIALIAS)
     img.save(imagesLocalPath + imageName + '.jpg')
     
     #Editamos el fichero de recursos:
